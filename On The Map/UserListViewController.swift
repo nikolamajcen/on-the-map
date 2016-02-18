@@ -1,5 +1,5 @@
 //
-//  FirstViewController.swift
+//  UserListViewController.swift
 //  On The Map
 //
 //  Created by Nikola Majcen on 18/02/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstViewController: UIViewController {
+class UserListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,7 +19,5 @@ class FirstViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
 }
 

@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  MapViewController.swift
 //  On The Map
 //
 //  Created by Nikola Majcen on 18/02/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
