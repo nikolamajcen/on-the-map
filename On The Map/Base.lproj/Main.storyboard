@@ -9,7 +9,7 @@
         <!--First-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
-                <viewController id="9pv-A4-QxB" customClass="MapViewController" customModule="On_The_Map" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MapViewController" id="9pv-A4-QxB" customClass="MapViewController" customModule="On_The_Map" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Ia1-K6-d13"/>
                         <viewControllerLayoutGuide type="bottom" id="4ug-Mw-9AY"/>
@@ -25,18 +25,10 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loaded by MapViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A5M-7J-77L">
-                                <rect key="frame" x="203" y="329" width="195" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="KQZ-1w-vlD" secondAttribute="centerX" id="6BV-lF-sBN"/>
-                            <constraint firstItem="A5M-7J-77L" firstAttribute="top" secondItem="KQZ-1w-vlD" secondAttribute="bottom" constant="8" symbolic="YES" id="cfb-er-3JN"/>
-                            <constraint firstItem="A5M-7J-77L" firstAttribute="centerX" secondItem="KQZ-1w-vlD" secondAttribute="centerX" id="e1l-AV-tCB"/>
                             <constraint firstAttribute="centerY" secondItem="KQZ-1w-vlD" secondAttribute="centerY" id="exm-UA-ej4"/>
                         </constraints>
                     </view>
@@ -49,7 +41,7 @@
         <!--Second-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
-                <viewController id="8rJ-Kc-sve" customClass="UserListViewController" customModule="On_The_Map" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserListViewController" id="8rJ-Kc-sve" customClass="UserListViewController" customModule="On_The_Map" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="L7p-HK-0SC"/>
                         <viewControllerLayoutGuide type="bottom" id="Djb-ko-YwX"/>
@@ -65,17 +57,9 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Loaded by UserListViewController" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NDk-cv-Gan">
-                                <rect key="frame" x="190" y="329" width="221" height="17"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="top" secondItem="zEq-FU-wV5" secondAttribute="bottom" constant="8" symbolic="YES" id="Day-4N-Vmt"/>
-                            <constraint firstItem="NDk-cv-Gan" firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="JgO-Fn-dHn"/>
                             <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
                         </constraints>
@@ -89,7 +73,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="49e-Tb-3d3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
@@ -108,7 +92,7 @@
         <!--Login View Controller-->
         <scene sceneID="RRR-vN-9yo">
             <objects>
-                <viewController id="8iv-rh-3Ml" customClass="LoginViewController" customModule="On_The_Map" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="8iv-rh-3Ml" customClass="LoginViewController" customModule="On_The_Map" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="s0J-z3-3vC"/>
                         <viewControllerLayoutGuide type="bottom" id="bKi-LV-Dul"/>
@@ -142,20 +126,26 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Login status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eS-mI-5QQ">
-                                <rect key="frame" x="124" y="406" width="352" height="21"/>
+                                <rect key="frame" x="124" y="405" width="352" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="uJt-OA-9fT">
+                                <rect key="frame" x="290" y="405" width="20" height="20"/>
+                                <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="0.98036099137931032" green="0.7305495689655146" blue="0.44059806034482757" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="0eS-mI-5QQ" firstAttribute="top" secondItem="XxP-Wj-eKp" secondAttribute="bottom" constant="30" id="EWH-Jn-cbg"/>
                             <constraint firstItem="XxP-Wj-eKp" firstAttribute="top" secondItem="kAu-ap-keZ" secondAttribute="bottom" constant="30" id="EsK-uo-xfD"/>
                             <constraint firstItem="gzi-jK-STj" firstAttribute="leading" secondItem="Gk9-RZ-QX8" secondAttribute="leadingMargin" constant="20" id="KNb-H4-eOK"/>
+                            <constraint firstItem="uJt-OA-9fT" firstAttribute="top" secondItem="XxP-Wj-eKp" secondAttribute="bottom" constant="30" id="OXE-m5-lDY"/>
                             <constraint firstItem="XxP-Wj-eKp" firstAttribute="centerX" secondItem="Gk9-RZ-QX8" secondAttribute="centerX" id="W5Y-Hl-lG5"/>
                             <constraint firstItem="kAu-ap-keZ" firstAttribute="centerY" secondItem="Gk9-RZ-QX8" secondAttribute="centerY" id="Ygt-dE-doX"/>
                             <constraint firstItem="0eS-mI-5QQ" firstAttribute="centerX" secondItem="Gk9-RZ-QX8" secondAttribute="centerX" id="dT7-Lv-pdL"/>
+                            <constraint firstItem="uJt-OA-9fT" firstAttribute="centerX" secondItem="Gk9-RZ-QX8" secondAttribute="centerX" id="dmZ-5N-0DP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="kAu-ap-keZ" secondAttribute="trailing" constant="20" id="jdK-d6-xZE"/>
                             <constraint firstItem="gzi-jK-STj" firstAttribute="top" secondItem="Bjt-uw-tYX" secondAttribute="bottom" constant="30" id="k2B-Rf-27O"/>
                             <constraint firstItem="kAu-ap-keZ" firstAttribute="top" secondItem="gzi-jK-STj" secondAttribute="bottom" constant="30" id="qAi-jQ-NtA"/>
@@ -165,9 +155,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loadingIndicator" destination="uJt-OA-9fT" id="aY1-79-lax"/>
                         <outlet property="loginError" destination="0eS-mI-5QQ" id="Pwt-4W-61b"/>
                         <outlet property="passwordField" destination="kAu-ap-keZ" id="8x6-ds-XZY"/>
                         <outlet property="usernameField" destination="gzi-jK-STj" id="9nh-1z-Ool"/>
+                        <segue destination="49e-Tb-3d3" kind="show" id="0QS-9j-3X3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eZm-uU-CPp" userLabel="First Responder" sceneMemberID="firstResponder"/>

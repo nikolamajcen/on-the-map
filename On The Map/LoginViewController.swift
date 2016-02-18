@@ -13,6 +13,7 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var loginError: UILabel!
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,21 +22,46 @@ class LoginViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(true)
         loginError.text = ""
+        loadingIndicator.hidden = true
     }
     
     @IBAction func userLogin(sender: UIButton) {
-        let client = UdacityClient()
-        client.createSession("POST", username: usernameField.text!, password: passwordField.text!) { (result, error) -> Void in
-            if error == nil {
+        self.showLoadingIndicator()
+        UdacityClient.sharedInstance.login(usernameField.text!, password: passwordField.text!) { (result) -> Void in
+            if result == true {
+                self.hideLoadingIndicator()
                 performUIUpdatesOnMain({ () -> Void in
-                    self.loginError.text = "Success :)"
+                    self.openApp()
                 })
             } else {
+                self.hideLoadingIndicator()
                 performUIUpdatesOnMain({ () -> Void in
-                    self.loginError.text = "Failure :("
-
+                    self.loginError.text = "Something is wrong. Try again :)"
                 })
             }
+        }
+    }
+    
+    func openApp() {
+        performUIUpdatesOnMain { () -> Void in
+            self.loginError.text = ""
+            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
+            self.presentViewController(controller, animated: true, completion: nil)
+        }
+    }
+    
+    func showLoadingIndicator() {
+        performUIUpdatesOnMain { () -> Void in
+            self.loginError.text = ""
+            self.loadingIndicator.hidden = false
+            self.loadingIndicator.startAnimating()
+        }
+    }
+    
+    func hideLoadingIndicator(){
+        performUIUpdatesOnMain { () -> Void in
+            self.loadingIndicator.hidden = true
+            self.loadingIndicator.stopAnimating()
         }
     }
 }

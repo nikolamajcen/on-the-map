@@ -10,11 +10,13 @@ import Foundation
 
 class UdacityClient: NSObject {
     
+    // Singleton
+    static let sharedInstance = UdacityClient()
+    
     // Shared session
     var session = NSURLSession.sharedSession()
 
-    // Authentification state
-    var requestToken: String?
+    // Authentification data
     var sessionID: String?
     var userID: Int?
     
@@ -22,17 +24,13 @@ class UdacityClient: NSObject {
         super.init()
     }
     
-    func createSession(method: String, username: String, password: String,
+    func createSession(jsonBody: String,
         completionHandlerForSession: (result: AnyObject!, error: NSError!) -> Void) -> NSURLSessionDataTask {
-            
-            let body = "{\"udacity\": {\"username\":\"" + username + "\", \"password\": \"" + password + "\"}}"
-            
             let request = NSMutableURLRequest(URL: NSURL(string: Constants.BaseUrl + "session")!)
             request.HTTPMethod = "POST"
             request.addValue("application/json", forHTTPHeaderField: "Accept")
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.HTTPBody = body.dataUsingEncoding(NSUTF8StringEncoding)
-            
+            request.HTTPBody = jsonBody.dataUsingEncoding(NSUTF8StringEncoding)
             
             let task = session.dataTaskWithRequest(request) { (data, response, error) -> Void in
                 
@@ -61,13 +59,36 @@ class UdacityClient: NSObject {
                     return
                 }
                 
-                // Return a result
-                completionHandlerForSession(result: data, error: nil)
+                // Covert data (first 5 characters are for security) and return result
+                self.convertJSONData(data.subdataWithRange(NSMakeRange(5, data.length - 5)),
+                    completionHandlerForConvertedData: completionHandlerForSession)
             }
             
             // Start the request
             task.resume()
-            
             return task
+    }
+    
+    private func convertJSONData(data: NSData, completionHandlerForConvertedData: (result: AnyObject!, error: NSError!) -> Void) {
+        var parsedResult: AnyObject!
+        
+        do {
+            parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.AllowFragments)
+        } catch {
+            completionHandlerForConvertedData(result: nil, error: NSError(domain: "convertJSONData", code: 1,
+                userInfo: [NSLocalizedDescriptionKey: "Could not parse JSON data."]))
+        }
+        
+        getSessionID(parsedResult)
+        getUserID(parsedResult)
+        completionHandlerForConvertedData(result: parsedResult, error: nil)
+    }
+    
+    private func getSessionID(jsonData: AnyObject) {
+        self.sessionID = jsonData["session"]!!["id"] as? String
+    }
+    
+    private func getUserID(jsonData: AnyObject) {
+        self.userID = Int((jsonData["account"]!!["key"] as? String)!)
     }
 }
