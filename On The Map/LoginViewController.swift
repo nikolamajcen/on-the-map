@@ -27,9 +27,14 @@ class LoginViewController: UIViewController {
         let client = UdacityClient()
         client.createSession("POST", username: usernameField.text!, password: passwordField.text!) { (result, error) -> Void in
             if error == nil {
-                self.loginError.text = "Success :)"
+                performUIUpdatesOnMain({ () -> Void in
+                    self.loginError.text = "Success :)"
+                })
             } else {
-                self.loginError.text = "Failure :("
+                performUIUpdatesOnMain({ () -> Void in
+                    self.loginError.text = "Failure :("
+
+                })
             }
         }
     }
