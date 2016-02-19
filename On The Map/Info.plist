@@ -40,7 +40,7 @@
 			<false/>
 		</dict>
 	</dict>
-	<key>NSLocationWhenInUsageDescription</key>
+	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Want to see where is user.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

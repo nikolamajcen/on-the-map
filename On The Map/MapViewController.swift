@@ -14,15 +14,18 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     
     var locationManager = CLLocationManager()
-    var annotations = [MKPointAnnotation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.mapView.delegate = self
-        
         self.getStudents()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(true)
         self.checkLocationAuthorizationStatus()
+        self.mapView.showsUserLocation = true
     }
     
     func checkLocationAuthorizationStatus() {
@@ -47,7 +50,6 @@ class MapViewController: UIViewController, MKMapViewDelegate {
                 print("Error occured.")
             }
         }
-        print("Students initialized.")
     }
     
     private func putPinOnMap(user: ParseStudent) {
@@ -55,29 +57,36 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     }
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        let reuseId = "pin"
-        
-        var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
-        
-        if pinView == nil {
-            pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView!.canShowCallout = true
-            pinView!.pinTintColor = UIColor.orangeColor()
-            pinView!.tintColor = UIColor.grayColor()
-            pinView!.rightCalloutAccessoryView = UIButton(type: .InfoDark)
+        if annotation.isMemberOfClass(MKUserLocation) {
+            return nil
+        } else {
+            let reuseId = "pin"
+            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+            
+            if pinView == nil {
+                pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                pinView!.canShowCallout = true
+                pinView!.animatesDrop = true
+                pinView!.pinTintColor = UIColor.orangeColor()
+                pinView!.tintColor = UIColor.grayColor()
+                pinView!.rightCalloutAccessoryView = UIButton(type: .InfoDark)
+            }
+            else {
+                pinView!.annotation = annotation
+            }
+            return pinView
         }
-        else {
-            pinView!.annotation = annotation
-        }
-        
-        return pinView
     }
     
     func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == view.rightCalloutAccessoryView {
             print("Pin tapped.")
         }
+    }
+    
+    func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {
+        self.mapView.setRegion(MKCoordinateRegion(center: userLocation.coordinate,
+            span: MKCoordinateSpanMake(0.25, 0.25)), animated: true)
     }
 }
 
