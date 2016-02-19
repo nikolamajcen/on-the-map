@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import MapKit
 
-class ParseStudent: NSObject {
+class ParseStudent: NSObject, MKAnnotation {
     
     var objectId: String?
     var uniqueKey: String?
@@ -18,6 +19,19 @@ class ParseStudent: NSObject {
     var mediaUrl: String?
     var latitude: Double?
     var longitude: Double?
+    
+    var title: String? {
+        return self.firstName! + " " + self.lastName!
+    }
+    
+    var subtitle: String? {
+        return mediaUrl!
+    }
+    
+    var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(latitude: CLLocationDegrees(latitude!),
+            longitude: CLLocationDegrees(longitude!))
+    }
     
     func JsonToStudent(jsonData: AnyObject) -> ParseStudent {
         
