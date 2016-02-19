@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Map-->
+        <!--Map View Controller-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController storyboardIdentifier="MapViewController" id="9pv-A4-QxB" customClass="MapViewController" customModule="On_The_Map" sceneMemberID="viewController">
@@ -32,11 +32,11 @@
                             <constraint firstAttribute="centerY" secondItem="KQZ-1w-vlD" secondAttribute="centerY" id="exm-UA-ej4"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Map" image="first" id="acW-dT-cKf"/>
+                    <navigationItem key="navigationItem" id="U4R-39-kzd"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="-320"/>
+            <point key="canvasLocation" x="1562" y="-320"/>
         </scene>
         <!--User list-->
         <scene sceneID="wg7-f3-ORb">
@@ -50,25 +50,38 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="User List View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="185" y="279" width="230" height="42"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h1N-Z8-s7j">
+                                <rect key="frame" x="20" y="0.0" width="560" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserCell" id="cuI-fj-c5G">
+                                        <rect key="frame" x="0.0" y="92" width="560" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cuI-fj-c5G" id="Wym-ku-GaR">
+                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="8rJ-Kc-sve" id="kLB-KC-nZp"/>
+                                    <outlet property="delegate" destination="8rJ-Kc-sve" id="qNa-Wd-FFo"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="centerX" secondItem="zEq-FU-wV5" secondAttribute="centerX" id="qqM-NS-xev"/>
-                            <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="h1N-Z8-s7j" secondAttribute="leading" id="3yT-wg-rmY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="h1N-Z8-s7j" secondAttribute="trailing" id="BPW-wa-xKw"/>
+                            <constraint firstItem="h1N-Z8-s7j" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="topMargin" id="OMP-FF-zJ0"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="h1N-Z8-s7j" secondAttribute="bottom" id="dMn-s8-sWn"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="User list" image="first" id="cPa-gy-q4n"/>
+                    <navigationItem key="navigationItem" title="User list" id="ynk-e4-9If"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="750" y="360"/>
+            <point key="canvasLocation" x="1562" y="360"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
@@ -81,8 +94,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
-                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
+                        <segue destination="AEv-gI-Q9A" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
+                        <segue destination="e8J-Uc-sCU" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -167,6 +180,44 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eZm-uU-CPp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-736" y="0.0"/>
+        </scene>
+        <!--User list-->
+        <scene sceneID="67d-fP-ix9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="e8J-Uc-sCU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="User list" image="first" id="cPa-gy-q4n"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cfx-6M-gYl">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="8rJ-Kc-sve" kind="relationship" relationship="rootViewController" id="j74-Sf-AHX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UsG-0B-lh8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="360"/>
+        </scene>
+        <!--Map-->
+        <scene sceneID="RZ1-nx-rZY">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AEv-gI-Q9A" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Map" image="first" id="acW-dT-cKf"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xaa-tL-HSv">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="9pv-A4-QxB" kind="relationship" relationship="rootViewController" id="4Dd-bi-B61"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1DQ-tz-Vv1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="750" y="-320"/>
         </scene>
     </scenes>
     <resources>
