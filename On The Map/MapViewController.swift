@@ -9,7 +9,7 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, MKMapViewDelegate {
+class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     
@@ -55,6 +55,9 @@ class MapViewController: UIViewController, MKMapViewDelegate {
     private func putPinOnMap(user: ParseStudent) {
         self.mapView.addAnnotation(user)
     }
+}
+
+extension MapViewController: MKMapViewDelegate {
     
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation.isMemberOfClass(MKUserLocation) {
@@ -78,10 +81,13 @@ class MapViewController: UIViewController, MKMapViewDelegate {
         }
     }
     
-    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        if control == view.rightCalloutAccessoryView {
-            print("Pin tapped.")
-        }
+    func mapView(mapView: MKMapView, annotationView view: MKAnnotationView,
+        calloutAccessoryControlTapped control: UIControl) {
+            if control == view.rightCalloutAccessoryView {
+                if let stringUrl = view.annotation?.subtitle! {
+                    UIApplication.sharedApplication().openURL(NSURL(string: stringUrl)!)
+                }
+            }
     }
     
     func mapView(mapView: MKMapView, didUpdateUserLocation userLocation: MKUserLocation) {

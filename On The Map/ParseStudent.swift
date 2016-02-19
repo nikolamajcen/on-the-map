@@ -40,7 +40,13 @@ class ParseStudent: NSObject, MKAnnotation {
         self.latitude = jsonData["latitude"] as? Double
         self.longitude = jsonData["longitude"] as? Double
         self.mapString = jsonData["mapString"] as? String
-        self.mediaUrl = jsonData["mediaURL"] as? String
+        
+        let tempUrl = jsonData["mediaURL"] as? String
+        if tempUrl!.lowercaseString.rangeOfString("http") == nil {
+            self.mediaUrl = "http://" + tempUrl!.lowercaseString
+        } else {
+            self.mediaUrl = tempUrl!.lowercaseString
+        }
         
         return self
     }
