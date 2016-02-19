@@ -6,7 +6,7 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--First-->
+        <!--Map-->
         <scene sceneID="hNz-n2-bh7">
             <objects>
                 <viewController storyboardIdentifier="MapViewController" id="9pv-A4-QxB" customClass="MapViewController" customModule="On_The_Map" sceneMemberID="viewController">
@@ -32,13 +32,13 @@
                             <constraint firstAttribute="centerY" secondItem="KQZ-1w-vlD" secondAttribute="centerY" id="exm-UA-ej4"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="First" image="first" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="first" id="acW-dT-cKf"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W5J-7L-Pyd" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="750" y="-320"/>
         </scene>
-        <!--Second-->
+        <!--User list-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController storyboardIdentifier="UserListViewController" id="8rJ-Kc-sve" customClass="UserListViewController" customModule="On_The_Map" sceneMemberID="viewController">
@@ -50,8 +50,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" misplaced="YES" text="User List View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
-                                <rect key="frame" x="195" y="279" width="210" height="42"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" text="User List View" textAlignment="center" lineBreakMode="tailTruncation" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zEq-FU-wV5">
+                                <rect key="frame" x="185" y="279" width="230" height="42"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="36"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -64,7 +64,7 @@
                             <constraint firstAttribute="centerY" secondItem="zEq-FU-wV5" secondAttribute="centerY" id="qzY-Ky-pLD"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Second" image="second" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="User list" image="first" id="cPa-gy-q4n"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -111,22 +111,14 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XxP-Wj-eKp">
-                                <rect key="frame" x="277" y="345" width="46" height="30"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Login"/>
-                                <connections>
-                                    <action selector="userLogin:" destination="8iv-rh-3Ml" eventType="touchUpInside" id="1lA-9K-9bw"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="On The Map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bjt-uw-tYX">
-                                <rect key="frame" x="210" y="155" width="180" height="40"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="On The Map" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bjt-uw-tYX">
+                                <rect key="frame" x="215" y="159" width="171" height="36"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="30"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Login status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eS-mI-5QQ">
-                                <rect key="frame" x="124" y="405" width="352" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Login status" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0eS-mI-5QQ">
+                                <rect key="frame" x="40" y="405" width="520" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -135,11 +127,20 @@
                                 <rect key="frame" x="290" y="405" width="20" height="20"/>
                                 <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XxP-Wj-eKp">
+                                <rect key="frame" x="281" y="345" width="38" height="30"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Login"/>
+                                <connections>
+                                    <action selector="userLogin:" destination="8iv-rh-3Ml" eventType="touchUpInside" id="1lA-9K-9bw"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.98036099137931032" green="0.7305495689655146" blue="0.44059806034482757" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="0eS-mI-5QQ" firstAttribute="top" secondItem="XxP-Wj-eKp" secondAttribute="bottom" constant="30" id="EWH-Jn-cbg"/>
                             <constraint firstItem="XxP-Wj-eKp" firstAttribute="top" secondItem="kAu-ap-keZ" secondAttribute="bottom" constant="30" id="EsK-uo-xfD"/>
+                            <constraint firstItem="0eS-mI-5QQ" firstAttribute="leading" secondItem="Gk9-RZ-QX8" secondAttribute="leadingMargin" constant="20" id="Gtc-1U-WG6"/>
                             <constraint firstItem="gzi-jK-STj" firstAttribute="leading" secondItem="Gk9-RZ-QX8" secondAttribute="leadingMargin" constant="20" id="KNb-H4-eOK"/>
                             <constraint firstItem="uJt-OA-9fT" firstAttribute="top" secondItem="XxP-Wj-eKp" secondAttribute="bottom" constant="30" id="OXE-m5-lDY"/>
                             <constraint firstItem="XxP-Wj-eKp" firstAttribute="centerX" secondItem="Gk9-RZ-QX8" secondAttribute="centerX" id="W5Y-Hl-lG5"/>
@@ -149,6 +150,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="kAu-ap-keZ" secondAttribute="trailing" constant="20" id="jdK-d6-xZE"/>
                             <constraint firstItem="gzi-jK-STj" firstAttribute="top" secondItem="Bjt-uw-tYX" secondAttribute="bottom" constant="30" id="k2B-Rf-27O"/>
                             <constraint firstItem="kAu-ap-keZ" firstAttribute="top" secondItem="gzi-jK-STj" secondAttribute="bottom" constant="30" id="qAi-jQ-NtA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="0eS-mI-5QQ" secondAttribute="trailing" constant="20" id="wMs-MZ-Ndb"/>
                             <constraint firstItem="Bjt-uw-tYX" firstAttribute="centerX" secondItem="Gk9-RZ-QX8" secondAttribute="centerX" id="xDN-PG-gEF"/>
                             <constraint firstAttribute="trailingMargin" secondItem="gzi-jK-STj" secondAttribute="trailing" constant="20" id="yDr-Ju-VSG"/>
                             <constraint firstItem="kAu-ap-keZ" firstAttribute="leading" secondItem="Gk9-RZ-QX8" secondAttribute="leadingMargin" constant="20" id="yyf-ai-nqs"/>
@@ -159,7 +161,7 @@
                         <outlet property="loginError" destination="0eS-mI-5QQ" id="Pwt-4W-61b"/>
                         <outlet property="passwordField" destination="kAu-ap-keZ" id="8x6-ds-XZY"/>
                         <outlet property="usernameField" destination="gzi-jK-STj" id="9nh-1z-Ool"/>
-                        <segue destination="49e-Tb-3d3" kind="show" id="0QS-9j-3X3"/>
+                        <segue destination="49e-Tb-3d3" kind="show" identifier="openTabBarController" id="0QS-9j-3X3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eZm-uU-CPp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -169,6 +171,5 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
-        <image name="second" width="30" height="30"/>
     </resources>
 </document>

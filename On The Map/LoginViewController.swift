@@ -26,19 +26,25 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func userLogin(sender: UIButton) {
-        self.showLoadingIndicator()
-        UdacityClient.sharedInstance.login(usernameField.text!, password: passwordField.text!) { (result) -> Void in
-            if result == true {
-                self.hideLoadingIndicator()
-                performUIUpdatesOnMain({ () -> Void in
-                    self.openApp()
-                })
-            } else {
-                self.hideLoadingIndicator()
-                performUIUpdatesOnMain({ () -> Void in
-                    self.loginError.text = "Something is wrong. Try again :)"
-                })
+        if usernameField.text != "" && passwordField.text != "" {
+            self.showLoadingIndicator()
+            UdacityClient.sharedInstance.login(usernameField.text!, password: passwordField.text!) { (result) -> Void in
+                if result == true {
+                    self.hideLoadingIndicator()
+                    performUIUpdatesOnMain({ () -> Void in
+                        self.openApp()
+                    })
+                } else {
+                    self.hideLoadingIndicator()
+                    performUIUpdatesOnMain({ () -> Void in
+                        self.loginError.text = "Something is wrong. Try again :)"
+                    })
+                }
             }
+        } else {
+            performUIUpdatesOnMain({ () -> Void in
+                self.loginError.text = "Please enter your username and password."
+            })
         }
     }
     

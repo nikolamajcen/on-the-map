@@ -15,8 +15,6 @@ extension UdacityClient {
         
         self.createSession(body) { (result, error) -> Void in
             if (error == nil) {
-                UdacityClient.sharedInstance.sessionID = result["session"]!!["id"] as? String
-                UdacityClient.sharedInstance.userID = result["account"]!!["key"] as? Int
                 authHandler(result: true)
             } else {
                 authHandler(result: false)
