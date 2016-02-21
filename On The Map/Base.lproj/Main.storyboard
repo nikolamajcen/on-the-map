@@ -33,7 +33,20 @@
                             <constraint firstItem="9CH-3A-Hwb" firstAttribute="top" secondItem="Ia1-K6-d13" secondAttribute="bottom" id="mkf-ef-rGU"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="On The Map" id="U4R-39-kzd"/>
+                    <navigationItem key="navigationItem" title="On The Map" id="U4R-39-kzd">
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="BAK-xb-xKJ">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="addUserLocation:" destination="9pv-A4-QxB" id="fWZ-wZ-lQE"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="kUR-O6-n4X">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="refreshUserLocations:" destination="9pv-A4-QxB" id="KNB-5w-5Vw"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="9CH-3A-Hwb" id="po8-sp-usn"/>
                     </connections>
@@ -97,7 +110,17 @@
                             <constraint firstAttribute="bottomMargin" secondItem="h1N-Z8-s7j" secondAttribute="bottom" id="dMn-s8-sWn"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="User list" id="ynk-e4-9If"/>
+                    <navigationItem key="navigationItem" title="User list" id="ynk-e4-9If">
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="jhk-xZ-3bC">
+                            <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <action selector="refreshUserList:" destination="8rJ-Kc-sve" id="dgn-Gy-UVy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="userList" destination="h1N-Z8-s7j" id="afB-Tg-KJP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
             </objects>
@@ -106,7 +129,6 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
                 <tabBarController storyboardIdentifier="TabBarController" id="49e-Tb-3d3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
@@ -119,6 +141,7 @@
                         <segue destination="e8J-Uc-sCU" kind="relationship" relationship="viewControllers" id="lzU-1b-eKA"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.0" y="0.0"/>
         </scene>

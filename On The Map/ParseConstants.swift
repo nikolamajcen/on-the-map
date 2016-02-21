@@ -10,9 +10,8 @@ import Foundation
 
 class ParseConstants {
     
-    static let BaseUrl = "https://api.parse.com/"
-    
     static let AppID = "QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr"
     static let ApiKey = "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
-
+    
+    static let BaseUrl = "https://api.parse.com/"
 }

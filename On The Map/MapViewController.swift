@@ -13,22 +13,56 @@ class MapViewController: UIViewController {
 
     @IBOutlet weak var mapView: MKMapView!
     
-    var locationManager = CLLocationManager()
+    private var locationManager = CLLocationManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        checkLocationAuthorizationStatus()
+        self.mapView.showsUserLocation = true
         self.mapView.delegate = self
-        self.getStudents()
+        
+        initializeUsers()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
-        self.checkLocationAuthorizationStatus()
-        self.mapView.showsUserLocation = true
+        
+        removeAnnotationsFromMap()
+        addAnnotationsToMap()
+        
     }
     
-    func checkLocationAuthorizationStatus() {
+    @IBAction func refreshUserLocations(sender: UIBarButtonItem) {
+        ParseClient.sharedInstance.removeUsers()
+        removeAnnotationsFromMap()
+        ParseClient.sharedInstance.getUsers { (success) -> Void in
+            if success == true {
+                self.addAnnotationsToMap()
+            } else {
+                let alertController = UIAlertController(title: "Fetch error",
+                    message: "Users locations failed to fetch.",
+                    preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "OK",
+                    style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    @IBAction func addUserLocation(sender: UIBarButtonItem) {
+        // TODO: Add user location with URL
+    }
+    
+    private func initializeUsers() {
+        ParseClient.sharedInstance.getUsers { (success) -> Void in
+            if success == true {
+                self.addAnnotationsToMap()
+            }
+        }
+    }
+    
+    private func checkLocationAuthorizationStatus() {
         if CLLocationManager.authorizationStatus() == .AuthorizedWhenInUse {
             mapView.showsUserLocation = true
         } else {
@@ -36,24 +70,18 @@ class MapViewController: UIViewController {
         }
     }
     
-    func getStudents() {
-        ParseClient.sharedInstance.getStudentLocations { (result, error) -> Void in
-            if (error == nil) {
-                // Convert JSON to student array
-                let count = result["results"]!!.count
-                for counter in 0...count - 1 {
-                    let student = ParseStudent().JsonToStudent(result["results"]!![counter])
-                    ParseClient.sharedInstance.userList.append(student)
-                    self.putPinOnMap(student)
-                }
-            } else {
-                print("Error occured.")
-            }
+    private func removeAnnotationsFromMap() {
+        if self.mapView.annotations.count > 0 {
+            performUIUpdatesOnMain({ () -> Void in
+                self.mapView.removeAnnotations(self.mapView.annotations)
+            })
         }
     }
     
-    private func putPinOnMap(user: ParseStudent) {
-        self.mapView.addAnnotation(user)
+    private func addAnnotationsToMap() {
+        performUIUpdatesOnMain({ () -> Void in
+            self.mapView.addAnnotations(ParseClient.sharedInstance.users)
+        })
     }
 }
 
@@ -63,11 +91,12 @@ extension MapViewController: MKMapViewDelegate {
         if annotation.isMemberOfClass(MKUserLocation) {
             return nil
         } else {
-            let reuseId = "pin"
-            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
+            let reusePinId = "pin"
+            var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reusePinId)
+                as? MKPinAnnotationView
             
             if pinView == nil {
-                pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+                pinView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: reusePinId)
                 pinView!.canShowCallout = true
                 pinView!.animatesDrop = true
                 pinView!.pinTintColor = UIColor.orangeColor()
