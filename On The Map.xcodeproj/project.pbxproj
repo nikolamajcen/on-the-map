@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4F38BCCA1C7BCD3700DFE2E0 /* FindLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F38BCC91C7BCD3700DFE2E0 /* FindLocationViewController.swift */; };
 		4F5F99241C763C020069BAA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F99231C763C020069BAA8 /* AppDelegate.swift */; };
 		4F5F99261C763C020069BAA8 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F99251C763C020069BAA8 /* MapViewController.swift */; };
 		4F5F99281C763C020069BAA8 /* UserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F5F99271C763C020069BAA8 /* UserListViewController.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4F38BCC91C7BCD3700DFE2E0 /* FindLocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindLocationViewController.swift; sourceTree = "<group>"; };
 		4F5F99201C763C020069BAA8 /* On The Map.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "On The Map.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F5F99231C763C020069BAA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4F5F99251C763C020069BAA8 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 				4F5F99391C7645D90069BAA8 /* LoginViewController.swift */,
 				4F5F99251C763C020069BAA8 /* MapViewController.swift */,
 				4F5F99271C763C020069BAA8 /* UserListViewController.swift */,
+				4F38BCC91C7BCD3700DFE2E0 /* FindLocationViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F38BCCA1C7BCD3700DFE2E0 /* FindLocationViewController.swift in Sources */,
 				4F5F993A1C7645D90069BAA8 /* LoginViewController.swift in Sources */,
 				4FB736DF1C773DF3002E6836 /* ParseStudent.swift in Sources */,
 				4F5F99491C767CB60069BAA8 /* UdacityAuth.swift in Sources */,
