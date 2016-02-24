@@ -10,14 +10,24 @@ import Foundation
 
 extension UdacityClient {
     
-    func login(username: String, password: String, authHandler: (result: Bool) -> Void) -> Void {
+    func login(username username: String, password: String, authHandler: (result: Bool) -> Void) -> Void {
         let body = "{\"udacity\": {\"username\":\"\(username)\", \"password\": \"\(password)\"}}"
         
-        self.createSession(body) { (result, error) -> Void in
+        createSession(body) { (result, error) -> Void in
             if (error == nil) {
                 authHandler(result: true)
             } else {
                 authHandler(result: false)
+            }
+        }
+    }
+    
+    func logout(completionHandlerForLogout: (success: Bool) -> Void) -> Void {
+        deleteSession { (logout) -> Void in
+            if logout == true {
+                completionHandlerForLogout(success: true)
+            } else {
+                completionHandlerForLogout(success: false)
             }
         }
     }

@@ -18,7 +18,7 @@ class UdacityClient: NSObject {
 
     // Authentification data
     var sessionID: String?
-    var userID: Int?
+    var userID: String?
     
     override init() {
         super.init()
@@ -69,6 +69,62 @@ class UdacityClient: NSObject {
             return task
     }
     
+    func deleteSession(completionHandlerForLogout: (logout: Bool) -> Void) -> NSURLSessionDataTask {
+        let request = NSMutableURLRequest(URL: NSURL(string: Constants.BaseUrl + "session")!)
+        request.HTTPMethod = "DELETE"
+        var xsrfCookie: NSHTTPCookie? = nil
+        let sharedCookieStorage = NSHTTPCookieStorage.sharedHTTPCookieStorage()
+        
+        for cookie in sharedCookieStorage.cookies! {
+            if cookie.name == "XSRF-TOKEN" { xsrfCookie = cookie }
+        }
+        
+        if let xsrfCookie = xsrfCookie {
+            request.setValue(xsrfCookie.value, forHTTPHeaderField: "X-XSRF-TOKEN")
+        }
+        
+        let session = NSURLSession.sharedSession()
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            
+            func sendError(error: String) {
+                print(error)
+                completionHandlerForLogout(logout: false)
+            }
+            
+            if error != nil {
+                sendError("Error: \(error)")
+                return
+            }
+            
+            // let data = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
+            
+            self.sessionID = nil
+            self.userID = nil
+            completionHandlerForLogout(logout: true)
+        }
+        task.resume()
+        return task
+    }
+    
+    func getUserPublicData() -> NSURLSessionDataTask {
+        let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/users/" + self.userID!)!)
+        let session = NSURLSession.sharedSession()
+        
+        let task = session.dataTaskWithRequest(request) { data, response, error in
+            if error != nil {
+                return
+            }
+            
+            let data = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
+            
+            print(NSString(data: data, encoding: NSUTF8StringEncoding))
+            
+        }
+        
+        task.resume()
+        return task
+    }
+    
     private func convertJSONData(data: NSData, completionHandlerForConvertedData: (result: AnyObject!, error: NSError!) -> Void) {
         var parsedResult: AnyObject!
         
@@ -89,6 +145,6 @@ class UdacityClient: NSObject {
     }
     
     private func getUserID(jsonData: AnyObject) {
-        self.userID = Int((jsonData["account"]!!["key"] as? String)!)
+        self.userID = jsonData["account"]!!["key"] as? String
     }
 }

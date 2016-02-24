@@ -28,7 +28,7 @@ class LoginViewController: UIViewController {
     @IBAction func userLogin(sender: UIButton) {
         if usernameField.text != "" && passwordField.text != "" {
             self.showLoadingIndicator()
-            UdacityClient.sharedInstance.login(usernameField.text!, password: passwordField.text!) { (result) -> Void in
+            UdacityClient.sharedInstance.login(username: usernameField.text!, password: passwordField.text!) { (result) -> Void in
                 if result == true {
                     self.hideLoadingIndicator()
                     performUIUpdatesOnMain({ () -> Void in
