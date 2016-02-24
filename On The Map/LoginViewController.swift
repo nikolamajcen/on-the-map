@@ -53,8 +53,7 @@ class LoginViewController: UIViewController {
             if success == true {
                 performUIUpdatesOnMain { () -> Void in
                     self.loginError.text = ""
-                    let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
-                    self.presentViewController(controller, animated: true, completion: nil)
+                    self.performSegueWithIdentifier("openTabBarController", sender: self)
                 }
             } else {
                 let alertController = UIAlertController(title: "User error",

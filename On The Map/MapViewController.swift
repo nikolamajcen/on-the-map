@@ -20,6 +20,7 @@ class MapViewController: UIViewController {
         
         checkLocationAuthorizationStatus()
         self.mapView.showsUserLocation = true
+        self.mapView.zoomEnabled = true
         self.mapView.delegate = self
         
         initializeUsers()
@@ -31,6 +32,10 @@ class MapViewController: UIViewController {
         removeAnnotationsFromMap()
         addAnnotationsToMap()
         
+    }
+    
+    @IBAction func addUserLocation(sender: UIBarButtonItem) {
+        performSegueWithIdentifier("FindLocationSegue", sender: self)
     }
     
     @IBAction func refreshUserLocations(sender: UIBarButtonItem) {
@@ -48,10 +53,6 @@ class MapViewController: UIViewController {
                 self.presentViewController(alertController, animated: true, completion: nil)
             }
         }
-    }
-    
-    @IBAction func addUserLocation(sender: UIBarButtonItem) {
-        // TODO: Add user location with URL
     }
     
     private func initializeUsers() {

@@ -37,7 +37,7 @@ class UserDetailsViewController: UIViewController {
         
         getDataFromUrl(ParseClient.sharedInstance.currentUser.imageUrl!) { (success, image) -> Void in
             if success == false {
-                // Show blank image...
+                // TODO: Show blank avatar image
             } else {
                 performUIUpdatesOnMain({ () -> Void in
                     self.userImage.image = UIImage(data: image)
