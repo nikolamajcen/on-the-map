@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -349,14 +350,61 @@
                     <view key="view" contentMode="scaleToFill" id="m4j-QB-PPg">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MDw-HZ-3kd">
+                                <rect key="frame" x="262" y="291" width="76" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last name:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MzY-7q-2co">
+                                <rect key="frame" x="262" y="376" width="76" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xRS-IR-2sZ">
+                                <rect key="frame" x="276" y="414" width="48" height="22"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0py-C4-MtN">
+                                <rect key="frame" x="276" y="329" width="48" height="22"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="XSK-JK-Yqh">
+                                <rect key="frame" x="217" y="94" width="167" height="167"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="XSK-JK-Yqh" secondAttribute="height" multiplier="1:1" id="ZWK-Mh-hn7"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xRS-IR-2sZ" firstAttribute="centerX" secondItem="m4j-QB-PPg" secondAttribute="centerX" id="28R-Ab-uIz"/>
+                            <constraint firstItem="MDw-HZ-3kd" firstAttribute="centerY" secondItem="m4j-QB-PPg" secondAttribute="centerY" id="C13-hW-PCn"/>
+                            <constraint firstItem="XSK-JK-Yqh" firstAttribute="top" secondItem="BNo-2u-mLx" secondAttribute="bottom" constant="30" id="Hag-nn-KN1"/>
+                            <constraint firstItem="MDw-HZ-3kd" firstAttribute="centerX" secondItem="m4j-QB-PPg" secondAttribute="centerX" id="Q5W-dh-PaB"/>
+                            <constraint firstItem="xRS-IR-2sZ" firstAttribute="top" secondItem="MzY-7q-2co" secondAttribute="bottom" constant="20" id="aMf-Nr-UDH"/>
+                            <constraint firstItem="MzY-7q-2co" firstAttribute="top" secondItem="0py-C4-MtN" secondAttribute="bottom" constant="25" id="if5-8I-vfN"/>
+                            <constraint firstItem="0py-C4-MtN" firstAttribute="top" secondItem="MDw-HZ-3kd" secondAttribute="bottom" constant="20" id="tap-mN-9xD"/>
+                            <constraint firstItem="MzY-7q-2co" firstAttribute="centerX" secondItem="m4j-QB-PPg" secondAttribute="centerX" id="uOI-Hd-EhS"/>
+                            <constraint firstItem="XSK-JK-Yqh" firstAttribute="centerX" secondItem="m4j-QB-PPg" secondAttribute="centerX" id="whF-VS-zEM"/>
+                            <constraint firstItem="0py-C4-MtN" firstAttribute="centerX" secondItem="m4j-QB-PPg" secondAttribute="centerX" id="xFJ-dR-a3V"/>
+                            <constraint firstItem="MDw-HZ-3kd" firstAttribute="top" secondItem="XSK-JK-Yqh" secondAttribute="bottom" constant="30" id="yAP-Xd-5vj"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="User details" id="gUL-N2-xXh">
                         <barButtonItem key="rightBarButtonItem" style="done" id="anb-dO-84q">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6sx-yL-kO3">
                                 <rect key="frame" x="532" y="7" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Logout"/>
+                                <state key="normal" title="Logout">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="logout:" destination="XR9-7Y-f8c" eventType="touchUpInside" id="kIK-hS-dQ0"/>
                                 </connections>
@@ -364,6 +412,11 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="userFirstName" destination="0py-C4-MtN" id="d8U-jw-5f3"/>
+                        <outlet property="userImage" destination="XSK-JK-Yqh" id="zTH-BG-J97"/>
+                        <outlet property="userLastName" destination="xRS-IR-2sZ" id="5t9-3F-eS1"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iMg-fQ-ZZd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

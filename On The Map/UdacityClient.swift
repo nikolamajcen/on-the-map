@@ -61,7 +61,13 @@ class UdacityClient: NSObject {
                 
                 // Covert data (first 5 characters are for security) and return result
                 self.convertJSONData(data.subdataWithRange(NSMakeRange(5, data.length - 5)),
-                    completionHandlerForConvertedData: completionHandlerForSession)
+                    completionHandlerForConvertedData: { (result, error) -> Void in
+                        if error == nil {
+                            self.getSessionID(result)
+                            self.getUserID(result)
+                        }
+                        completionHandlerForSession(result: result, error: error)
+                })
             }
             
             // Start the request
@@ -106,19 +112,33 @@ class UdacityClient: NSObject {
         return task
     }
     
-    func getUserPublicData() -> NSURLSessionDataTask {
+    func getUserPublicData(completionHandlerForUserData: (result: AnyObject!, error: NSError!) -> Void ) -> NSURLSessionDataTask {
         let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/users/" + self.userID!)!)
         let session = NSURLSession.sharedSession()
+        
+        func sendError(error: String) {
+            print(error)
+            completionHandlerForUserData(result: nil, error: NSError(domain: "createSession",
+                code: 1, userInfo: [NSLocalizedDescriptionKey: error]))
+        }
         
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if error != nil {
                 return
             }
             
-            let data = data!.subdataWithRange(NSMakeRange(5, data!.length - 5))
+            guard let data = data else {
+                sendError("No data provided.")
+                return
+            }
             
-            print(NSString(data: data, encoding: NSUTF8StringEncoding))
-            
+            self.convertJSONData(data.subdataWithRange(NSMakeRange(5, data.length - 5)),
+                completionHandlerForConvertedData: { (var result, error) -> Void in
+                    if error == nil {
+                        result = self.getUserDetails(result)
+                    }
+                    completionHandlerForUserData(result: result, error: error)
+            })
         }
         
         task.resume()
@@ -135,8 +155,6 @@ class UdacityClient: NSObject {
                 userInfo: [NSLocalizedDescriptionKey: "Could not parse JSON data."]))
         }
         
-        getSessionID(parsedResult)
-        getUserID(parsedResult)
         completionHandlerForConvertedData(result: parsedResult, error: nil)
     }
     
@@ -146,5 +164,16 @@ class UdacityClient: NSObject {
     
     private func getUserID(jsonData: AnyObject) {
         self.userID = jsonData["account"]!!["key"] as? String
+    }
+    
+    func getUserDetails(jsonData: AnyObject) -> ParseStudent {
+        let user = ParseStudent()
+        
+        user.uniqueKey = jsonData["user"]!!["key"] as? String
+        user.firstName = jsonData["user"]!!["first_name"] as? String
+        user.lastName = jsonData["user"]!!["last_name"] as? String
+        user.imageUrl = NSURL(string: ("https:" + (jsonData["user"]!!["_image_url"] as? String)!))
+        
+        return user
     }
 }

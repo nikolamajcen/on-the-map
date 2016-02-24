@@ -19,6 +19,7 @@ class ParseStudent: NSObject, MKAnnotation {
     var mediaUrl: String?
     var latitude: Double?
     var longitude: Double?
+    var imageUrl: NSURL?
     
     var title: String? {
         return self.firstName! + " " + self.lastName!

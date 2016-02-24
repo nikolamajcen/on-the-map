@@ -32,7 +32,7 @@ class LoginViewController: UIViewController {
                 if result == true {
                     self.hideLoadingIndicator()
                     performUIUpdatesOnMain({ () -> Void in
-                        self.openApp()
+                        self.completeLogin()
                     })
                 } else {
                     self.hideLoadingIndicator()
@@ -48,11 +48,34 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func openApp() {
-        performUIUpdatesOnMain { () -> Void in
-            self.loginError.text = ""
-            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
-            self.presentViewController(controller, animated: true, completion: nil)
+    func completeLogin() {
+        self.getUserData { (success) -> Void in
+            if success == true {
+                performUIUpdatesOnMain { () -> Void in
+                    self.loginError.text = ""
+                    let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
+                    self.presentViewController(controller, animated: true, completion: nil)
+                }
+            } else {
+                let alertController = UIAlertController(title: "User error",
+                    message: "Users data failed to fetch.",
+                    preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "OK",
+                    style: UIAlertActionStyle.Default, handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func getUserData(completionHandlerForUserData: (success: Bool) -> Void ) {
+        UdacityClient.sharedInstance.getUserPublicData { (result, error) -> Void in
+            guard let user = result else {
+                completionHandlerForUserData(success: false)
+                return
+            }
+            
+            ParseClient.sharedInstance.currentUser = user as! ParseStudent
+            completionHandlerForUserData(success: true)
         }
     }
     
