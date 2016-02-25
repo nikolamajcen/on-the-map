@@ -35,6 +35,9 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func addUserLocation(sender: UIBarButtonItem) {
+        // TODO: If user already posted his location, ask if he wants to overwrite
+        // TODO: Add new location (send false) via segue
+        // TODO: Overwrite location (send true) via segue
         performSegueWithIdentifier("FindLocationSegue", sender: self)
     }
     

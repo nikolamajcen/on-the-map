@@ -30,8 +30,8 @@ class LoginViewController: UIViewController {
             self.showLoadingIndicator()
             UdacityClient.sharedInstance.login(username: usernameField.text!, password: passwordField.text!) { (result) -> Void in
                 if result == true {
-                    self.hideLoadingIndicator()
                     performUIUpdatesOnMain({ () -> Void in
+                        self.loginError.text = ""
                         self.completeLogin()
                     })
                 } else {
@@ -52,7 +52,7 @@ class LoginViewController: UIViewController {
         self.getUserData { (success) -> Void in
             if success == true {
                 performUIUpdatesOnMain { () -> Void in
-                    self.loginError.text = ""
+                    self.hideLoadingIndicator()
                     self.performSegueWithIdentifier("openTabBarController", sender: self)
                 }
             } else {
@@ -78,7 +78,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func showLoadingIndicator() {
+    private func showLoadingIndicator() {
         performUIUpdatesOnMain { () -> Void in
             self.loginError.text = ""
             self.loadingIndicator.hidden = false
@@ -86,7 +86,7 @@ class LoginViewController: UIViewController {
         }
     }
     
-    func hideLoadingIndicator(){
+    private func hideLoadingIndicator(){
         performUIUpdatesOnMain { () -> Void in
             self.loadingIndicator.hidden = true
             self.loadingIndicator.stopAnimating()

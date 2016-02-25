@@ -180,7 +180,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enter your URL:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cVO-u7-1OZ">
                                         <rect key="frame" x="240" y="36" width="120" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEr-D1-MTV">
@@ -248,14 +248,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="h1N-Z8-s7j">
-                                <rect key="frame" x="20" y="0.0" width="560" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserCell" textLabel="r7T-i1-ahd" detailTextLabel="zZf-Oj-FuZ" style="IBUITableViewCellStyleSubtitle" id="cuI-fj-c5G">
-                                        <rect key="frame" x="0.0" y="92" width="560" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="UserCell" textLabel="r7T-i1-ahd" detailTextLabel="zZf-Oj-FuZ" style="IBUITableViewCellStyleSubtitle" id="cuI-fj-c5G">
+                                        <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cuI-fj-c5G" id="Wym-ku-GaR">
-                                            <rect key="frame" x="0.0" y="0.0" width="560" height="43"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="r7T-i1-ahd">
@@ -284,8 +284,8 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="leadingMargin" secondItem="h1N-Z8-s7j" secondAttribute="leading" id="3yT-wg-rmY"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="h1N-Z8-s7j" secondAttribute="trailing" id="BPW-wa-xKw"/>
+                            <constraint firstAttribute="leadingMargin" secondItem="h1N-Z8-s7j" secondAttribute="leading" constant="20" id="3yT-wg-rmY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="h1N-Z8-s7j" secondAttribute="trailing" constant="-20" id="BPW-wa-xKw"/>
                             <constraint firstItem="h1N-Z8-s7j" firstAttribute="top" secondItem="QS5-Rx-YEW" secondAttribute="topMargin" id="OMP-FF-zJ0"/>
                             <constraint firstAttribute="bottomMargin" secondItem="h1N-Z8-s7j" secondAttribute="bottom" id="dMn-s8-sWn"/>
                         </constraints>
@@ -314,7 +314,12 @@
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
+                                <color key="value" red="0.98039215686274506" green="0.72941176470588232" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
                         <segue destination="AEv-gI-Q9A" kind="relationship" relationship="viewControllers" id="u7Y-xg-7CH"/>
@@ -405,11 +410,11 @@
             </objects>
             <point key="canvasLocation" x="-736" y="0.0"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--User list-->
         <scene sceneID="67d-fP-ix9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="e8J-Uc-sCU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="mostViewed" id="cPa-gy-q4n"/>
+                    <tabBarItem key="tabBarItem" title="User list" image="List" selectedImage="List" id="cPa-gy-q4n"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cfx-6M-gYl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -425,7 +430,7 @@
             </objects>
             <point key="canvasLocation" x="779" y="0.0"/>
         </scene>
-        <!--User details-->
+        <!--Account details-->
         <scene sceneID="UG9-uI-AV5">
             <objects>
                 <viewController storyboardIdentifier="UserDetailsViewController" id="XR9-7Y-f8c" customClass="UserDetailsViewController" customModule="On_The_Map" customModuleProvider="target" sceneMemberID="viewController">
@@ -483,7 +488,7 @@
                             <constraint firstItem="MDw-HZ-3kd" firstAttribute="top" secondItem="XSK-JK-Yqh" secondAttribute="bottom" constant="30" id="yAP-Xd-5vj"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="User details" id="gUL-N2-xXh">
+                    <navigationItem key="navigationItem" title="Account details" id="gUL-N2-xXh">
                         <barButtonItem key="rightBarButtonItem" style="done" id="anb-dO-84q">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6sx-yL-kO3">
                                 <rect key="frame" x="532" y="7" width="48" height="30"/>
@@ -508,11 +513,11 @@
             </objects>
             <point key="canvasLocation" x="1548" y="780"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Map-->
         <scene sceneID="RZ1-nx-rZY">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AEv-gI-Q9A" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" systemItem="featured" id="acW-dT-cKf"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="Map" selectedImage="Map" id="acW-dT-cKf"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xaa-tL-HSv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -528,11 +533,11 @@
             </objects>
             <point key="canvasLocation" x="779" y="-693"/>
         </scene>
-        <!--Item-->
+        <!--Account-->
         <scene sceneID="5IU-Of-OZi">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WYa-jw-9Tb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="dik-nG-1qZ"/>
+                    <tabBarItem key="tabBarItem" title="Account" image="User" selectedImage="User" id="dik-nG-1qZ"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ckI-q8-Rx1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -569,4 +574,9 @@
             <point key="canvasLocation" x="2335" y="-693"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="List" width="30" height="30"/>
+        <image name="Map" width="30" height="30"/>
+        <image name="User" width="30" height="30"/>
+    </resources>
 </document>

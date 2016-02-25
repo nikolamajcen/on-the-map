@@ -149,8 +149,8 @@
 				4F5F99391C7645D90069BAA8 /* LoginViewController.swift */,
 				4F5F99251C763C020069BAA8 /* MapViewController.swift */,
 				4F5F99271C763C020069BAA8 /* UserListViewController.swift */,
-				4F38BCC91C7BCD3700DFE2E0 /* FindLocationViewController.swift */,
 				4F7929A31C7E0F43007EF994 /* UserDetailsViewController.swift */,
+				4F38BCC91C7BCD3700DFE2E0 /* FindLocationViewController.swift */,
 				4F7929A51C7E4328007EF994 /* AddLocationViewController.swift */,
 			);
 			name = Controllers;
