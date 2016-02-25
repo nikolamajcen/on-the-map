@@ -14,6 +14,7 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     private var locationManager = CLLocationManager()
+    var userLocationAlreadyAdded: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,10 +36,27 @@ class MapViewController: UIViewController {
     }
     
     @IBAction func addUserLocation(sender: UIBarButtonItem) {
-        // TODO: If user already posted his location, ask if he wants to overwrite
-        // TODO: Add new location (send false) via segue
-        // TODO: Overwrite location (send true) via segue
-        performSegueWithIdentifier("FindLocationSegue", sender: self)
+        ParseClient.sharedInstance.isStudentLocationAlreadyPosted { (alreadyPosted, objectId) -> Void in
+            if alreadyPosted == false {
+                self.userLocationAlreadyAdded = false
+                self.performSegueWithIdentifier("FindLocationSegue", sender: self)
+            } else {
+                self.userLocationAlreadyAdded = true
+                ParseClient.sharedInstance.currentUser.objectId = objectId as? String
+                let alertController = UIAlertController(title: "Location alert",
+                    message: "You already posted location.",
+                    preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "Overwrite",
+                    style: UIAlertActionStyle.Default, handler: { (UIAlertAction) -> Void in
+                    self.performSegueWithIdentifier("FindLocationSegue", sender: self)
+                }))
+                alertController.addAction(UIAlertAction(title: "Cancel",
+                    style: UIAlertActionStyle.Default, handler: nil))
+                performUIUpdatesOnMain({ () -> Void in
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                })
+            }
+        }
     }
     
     @IBAction func refreshUserLocations(sender: UIBarButtonItem) {
@@ -53,9 +71,17 @@ class MapViewController: UIViewController {
                     preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "OK",
                     style: UIAlertActionStyle.Default, handler: nil))
-                self.presentViewController(alertController, animated: true, completion: nil)
+                performUIUpdatesOnMain({ () -> Void in
+                    self.presentViewController(alertController, animated: true, completion: nil)
+                })
             }
         }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        let navigationController = segue.destinationViewController as! UINavigationController
+        let controller = navigationController.topViewController as! FindLocationViewController
+        controller.updateUserLocation = self.userLocationAlreadyAdded
     }
     
     private func initializeUsers() {

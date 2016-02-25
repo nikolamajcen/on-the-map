@@ -27,6 +27,9 @@ class ParseClient: NSObject {
                     let user = ParseStudent().JsonToStudent(result["results"]!![counter])
                     self.users.append(user)
                 }
+                self.users.sortInPlace({ (userA, userB) -> Bool in
+                    userA.firstName < userB.firstName
+                })
                 completionHanderForUsers(success: true)
             } else {
                 completionHanderForUsers(success: false)
@@ -38,12 +41,62 @@ class ParseClient: NSObject {
         self.users.removeAll()
     }
     
-    func isStudentLocationAlreadyPosted() -> Bool {
-        if users.contains(currentUser) == true {
-            return true
-        } else {
-            return false
+    func isStudentLocationAlreadyPosted(handler: (alreadyPosted: Bool, objectId: AnyObject!) -> Void) -> Void {
+        getUserLocation { (success, result) -> Void in
+            handler(alreadyPosted: success, objectId: result)
         }
+    }
+    
+    func addUserLocation(location location: String, latitude: Double, longitude: Double, mediaUrl: String,
+        completionHandlerForAddingLocation: (success: Bool) -> Void) -> NSURLSessionDataTask {
+            let user = ParseClient.sharedInstance.currentUser
+            
+            let request = NSMutableURLRequest(URL: NSURL(string: "https://api.parse.com/1/classes/StudentLocation")!)
+            request.HTTPMethod = "POST"
+            request.addValue(ParseConstants.AppID, forHTTPHeaderField: "X-Parse-Application-Id")
+            request.addValue(ParseConstants.ApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            request.HTTPBody = "{\"uniqueKey\": \"\(user.uniqueKey!)\", \"firstName\": \"\(user.firstName!)\", \"lastName\": \"\(user.lastName!)\",\"mapString\": \"\(location)\", \"mediaURL\": \"\(mediaUrl)\",\"latitude\": \(latitude), \"longitude\": \(longitude)}"
+                .dataUsingEncoding(NSUTF8StringEncoding)
+            
+            let session = NSURLSession.sharedSession()
+            let task = session.dataTaskWithRequest(request) { data, response, error in
+                if error != nil {
+                    completionHandlerForAddingLocation(success: false)
+                    return
+                }
+                completionHandlerForAddingLocation(success: true)
+            }
+            task.resume()
+            return task
+    }
+    
+    func updateUserLocation(location location: String, latitude: Double, longitude: Double, mediaUrl: String,
+        completionHandlerForUpdatingLocation: (success: Bool) -> Void) -> NSURLSessionDataTask {
+            let user = ParseClient.sharedInstance.currentUser
+            let urlString = "https://api.parse.com/1/classes/StudentLocation/\(user.objectId!)"
+            
+            let url = NSURL(string: urlString)
+            let request = NSMutableURLRequest(URL: url!)
+            request.HTTPMethod = "PUT"
+            request.addValue(ParseConstants.AppID, forHTTPHeaderField: "X-Parse-Application-Id")
+            request.addValue(ParseConstants.ApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            
+            request.HTTPBody = "{\"uniqueKey\": \"\(user.uniqueKey!)\", \"firstName\": \"\(user.firstName!)\", \"lastName\": \"\(user.lastName!)\",\"mapString\": \"\(location)\", \"mediaURL\": \"\(mediaUrl)\",\"latitude\": \(latitude), \"longitude\": \(longitude)}"
+                .dataUsingEncoding(NSUTF8StringEncoding)
+            
+            let session = NSURLSession.sharedSession()
+            let task = session.dataTaskWithRequest(request) { data, response, error in
+                if error != nil {
+                    completionHandlerForUpdatingLocation(success: false)
+                    return
+                }
+                completionHandlerForUpdatingLocation(success: true)
+            }
+            task.resume()
+            return task
     }
     
     private func fetchUsers(completionHandlerForStudents: (result: AnyObject!, error: NSError!) -> Void) -> NSURLSessionDataTask {
@@ -85,23 +138,34 @@ class ParseClient: NSObject {
         return task
     }
     
-    private func addUserLocation(completionHandlerForAddingLocation: (success: Bool) -> Void) -> NSURLSessionDataTask {
-        let request = NSMutableURLRequest(URL: NSURL(string: "https://example.com")!)
-        request.HTTPMethod = "POST"
-        request.addValue("QrX47CA9cyuGewLdsL7o5Eb8iug6Em8ye0dnAbIr", forHTTPHeaderField: "X-Parse-Application-Id")
-        request.addValue("QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY", forHTTPHeaderField: "X-Parse-REST-API-Key")
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    private func getUserLocation(completionHandlerForGettingUserLocation: (success: Bool, result: AnyObject!) -> Void) -> NSURLSessionDataTask {
+        let uniqueKey = ParseClient.sharedInstance.currentUser.uniqueKey
+        let urlString = "https://api.parse.com/1/classes/StudentLocation?where=%7B%22uniqueKey%22%3A%22" + uniqueKey! + "%22%7D"
         
-        request.HTTPBody = "{\"uniqueKey\": \"1234\", \"firstName\": \"John\", \"lastName\": \"Doe\",\"mapString\": \"Mountain View, CA\", \"mediaURL\": \"https://udacity.com\",\"latitude\": 37.386052, \"longitude\": -122.083851}"
-            .dataUsingEncoding(NSUTF8StringEncoding)
+        let url = NSURL(string: urlString)
+        let request = NSMutableURLRequest(URL: url!)
+        request.addValue(ParseConstants.AppID, forHTTPHeaderField: "X-Parse-Application-Id")
+        request.addValue(ParseConstants.ApiKey, forHTTPHeaderField: "X-Parse-REST-API-Key")
         
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
-            if error != nil { // Handle error…
+            if error != nil {
+                completionHandlerForGettingUserLocation(success: false, result: nil)
                 return
             }
             
-            print(NSString(data: data!, encoding: NSUTF8StringEncoding))
+            self.convertJSONData(data!, completionHandler: { (result, error) -> Void in
+                if error == nil {
+                    guard (result["results"] as! NSArray).count == 0 else {
+                        completionHandlerForGettingUserLocation(success: true,
+                            result: result["results"]!![0]["objectId"])
+                        return
+                    }
+                    completionHandlerForGettingUserLocation(success: false, result: nil)
+                } else  {
+                    completionHandlerForGettingUserLocation(success: false, result: nil)
+                }
+            })
             
         }
         task.resume()

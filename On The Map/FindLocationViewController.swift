@@ -12,6 +12,7 @@ import MapKit
 class FindLocationViewController: UIViewController {
     
     var annotation: MKPointAnnotation!
+    var updateUserLocation: Bool?
     
     @IBOutlet weak var locationSearchField: UITextField!
     
@@ -47,6 +48,8 @@ class FindLocationViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let controller = segue.destinationViewController as! AddLocationViewController
         controller.annotation = self.annotation
+        controller.updateUserLocation = self.updateUserLocation
+        self.annotation = nil
     }
     
     private func findLocation(location: String, completionHandlerForLocation: (success: Bool,

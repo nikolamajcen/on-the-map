@@ -169,6 +169,7 @@ class UdacityClient: NSObject {
     func getUserDetails(jsonData: AnyObject) -> ParseStudent {
         let user = ParseStudent()
         
+        user.objectId = self.userID
         user.uniqueKey = jsonData["user"]!!["key"] as? String
         user.firstName = jsonData["user"]!!["first_name"] as? String
         user.lastName = jsonData["user"]!!["last_name"] as? String

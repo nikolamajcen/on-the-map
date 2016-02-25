@@ -15,6 +15,7 @@ class AddLocationViewController: UIViewController {
     @IBOutlet weak var userUrl: UITextField!
     
     var annotation: MKAnnotation!
+    var updateUserLocation: Bool?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,7 +28,43 @@ class AddLocationViewController: UIViewController {
     }
     
     @IBAction func addLocation(sender: UIButton) {
-        
+        if updateUserLocation == false {
+            ParseClient.sharedInstance.addUserLocation(location: annotation.title!!,
+                latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude,
+                mediaUrl: userUrl.text!, completionHandlerForAddingLocation: { (success) -> Void in
+                    if success ==  true {
+                        ParseClient.sharedInstance.removeUsers()
+                        ParseClient.sharedInstance.getUsers({ (success) -> Void in
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        })
+                    } else {
+                        let alertController = UIAlertController(title: "Location error",
+                            message: "Unable to add user location.",
+                            preferredStyle: UIAlertControllerStyle.Alert)
+                        alertController.addAction(UIAlertAction(title: "OK",
+                            style: UIAlertActionStyle.Default, handler: nil))
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
+            })
+        } else {
+            ParseClient.sharedInstance.updateUserLocation(location: annotation.title!!,
+                latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude,
+                mediaUrl: userUrl.text!, completionHandlerForUpdatingLocation: { (success) -> Void in
+                    if success == true {
+                        ParseClient.sharedInstance.removeUsers()
+                        ParseClient.sharedInstance.getUsers({ (success) -> Void in
+                            self.dismissViewControllerAnimated(true, completion: nil)
+                        })
+                    } else {
+                        let alertController = UIAlertController(title: "Location error",
+                            message: "Unable to update user location.",
+                            preferredStyle: UIAlertControllerStyle.Alert)
+                        alertController.addAction(UIAlertAction(title: "OK",
+                            style: UIAlertActionStyle.Default, handler: nil))
+                        self.dismissViewControllerAnimated(true, completion: nil)
+                    }
+            })
+        }
     }
     
     private func initializeUserLocation() {
