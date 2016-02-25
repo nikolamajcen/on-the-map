@@ -91,7 +91,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUE-yF-9bG">
                                 <rect key="frame" x="70" y="424" width="460" height="30"/>
                                 <state key="normal" title="Find on the map">
-                                    <color key="titleColor" red="0.98036099139999999" green="0.73054956900000001" blue="0.44059806029999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.98039215686274506" green="0.65098039215686276" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="findLocationOnMap:" destination="9rx-fZ-sDv" eventType="touchUpInside" id="cvd-r4-fvu"/>
@@ -102,12 +102,12 @@
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cdE-oq-wfX">
                                         <rect key="frame" x="40" y="49" width="520" height="29"/>
-                                        <color key="backgroundColor" red="0.98036099139999999" green="0.73054956900000001" blue="0.44059806029999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.98039215686274506" green="0.65098039215686276" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                                         <fontDescription key="fontDescription" name="GillSans-SemiBold" family="Gill Sans" pointSize="24"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
-                                <color key="backgroundColor" red="0.98036099139999999" green="0.73054956900000001" blue="0.44059806029999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.98039215686274506" green="0.65098039215686276" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="cdE-oq-wfX" secondAttribute="bottom" constant="52" id="58V-fw-z0i"/>
                                     <constraint firstItem="cdE-oq-wfX" firstAttribute="top" secondItem="nPv-3z-bGu" secondAttribute="top" constant="49" id="DL8-vp-1JQ"/>
@@ -142,7 +142,7 @@
                             <color key="tintColor" red="0.98036099139999999" green="0.73054956900000001" blue="0.44059806029999998" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="8Mg-g7-90K">
-                            <color key="tintColor" red="0.98036099139999999" green="0.73054956900000001" blue="0.44059806029999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.98039215686274506" green="0.65098039215686276" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="cancel:" destination="9rx-fZ-sDv" id="Tr7-n9-loR"/>
                             </connections>
@@ -186,7 +186,7 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bEr-D1-MTV">
                                         <rect key="frame" x="257" y="121" width="86" height="30"/>
                                         <state key="normal" title="Add location">
-                                            <color key="titleColor" red="0.98036099139999999" green="0.73054956900000001" blue="0.44059806029999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.98039215686274506" green="0.65098039215686276" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="addLocation:" destination="xW2-nZ-oJ7" eventType="touchUpInside" id="gqj-MD-HXl"/>
@@ -223,7 +223,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="VCe-ze-bue">
                         <barButtonItem key="rightBarButtonItem" title="Cancel" id="Epw-oC-2M2">
-                            <color key="tintColor" red="0.98036099139999999" green="0.73054956900000001" blue="0.44059806029999998" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="tintColor" red="0.98039215686274506" green="0.65098039215686276" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -251,7 +251,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="UserCell" textLabel="r7T-i1-ahd" detailTextLabel="zZf-Oj-FuZ" style="IBUITableViewCellStyleSubtitle" id="cuI-fj-c5G">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="UserCell" textLabel="r7T-i1-ahd" detailTextLabel="zZf-Oj-FuZ" style="IBUITableViewCellStyleSubtitle" id="cuI-fj-c5G">
                                         <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cuI-fj-c5G" id="Wym-ku-GaR">
@@ -317,7 +317,7 @@
                         <color key="barTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="color" keyPath="tintColor">
-                                <color key="value" red="0.98039215686274506" green="0.72941176470588232" blue="0.4392156862745098" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="value" red="0.98039215686274506" green="0.65098039215686276" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </tabBar>
@@ -378,7 +378,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="0.98036099137931032" green="0.7305495689655146" blue="0.44059806034482757" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="0.98039215686274506" green="0.65098039215686276" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="0eS-mI-5QQ" firstAttribute="top" secondItem="XxP-Wj-eKp" secondAttribute="bottom" constant="30" id="EWH-Jn-cbg"/>
                             <constraint firstItem="XxP-Wj-eKp" firstAttribute="top" secondItem="kAu-ap-keZ" secondAttribute="bottom" constant="30" id="EsK-uo-xfD"/>
@@ -419,7 +419,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Cfx-6M-gYl">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.98036099139999999" green="0.73054956900000001" blue="0.44059806029999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.98039215686274506" green="0.65098039215686276" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -493,6 +493,7 @@
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="6sx-yL-kO3">
                                 <rect key="frame" x="532" y="7" width="48" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <state key="normal" title="Logout">
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -522,7 +523,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Xaa-tL-HSv">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.98036099139999999" green="0.73054956900000001" blue="0.44059806029999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.98039215686274506" green="0.65098039215686276" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -542,7 +543,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ckI-q8-Rx1">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.98036099139999999" green="0.73054956900000001" blue="0.44059806029999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.98039215686274506" green="0.65098039215686276" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -563,6 +564,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.98036099139999999" green="0.73054956900000001" blue="0.44059806029999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

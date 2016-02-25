@@ -80,6 +80,9 @@ class MapViewController: UIViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         let navigationController = segue.destinationViewController as! UINavigationController
+        navigationController.navigationBar.setBackgroundImage(UIImage(),
+            forBarPosition: .Any, barMetrics: .Default)
+        navigationController.navigationBar.shadowImage = UIImage()
         let controller = navigationController.topViewController as! FindLocationViewController
         controller.updateUserLocation = self.userLocationAlreadyAdded
     }
